@@ -1,79 +1,225 @@
+:root {
+  --bg: #eef3ee;
+  --surface: #ffffff;
+  --ink: #1b2a22;
+  --muted: #5b6b62;
+  --line: #d5e0d8;
+  --green: #14532d;
+  --green-soft: #e3efe6;
+  --gold: #b0842a;
+  --track: #dde7e0;
+}
+
+* { box-sizing: border-box; }
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #222;
-  background: #fff;
-  line-height: 1.5;
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
   margin: 0;
 }
 
 .app {
   max-width: 640px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 32px 16px 48px;
 }
 
-h1 { font-size: 24px; margin: 0 0 4px; }
-h2 { font-size: 18px; margin: 0 0 8px; }
-h3 { font-size: 16px; margin: 0 0 4px; }
-
-section {
-  border-top: 1px solid #ccc;
-  padding: 16px 0;
+/* Header */
+.page-header {
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--gold);
 }
 
+h1 { font-size: 28px; line-height: 1.2; margin: 0 0 6px; color: var(--green); }
+h2 { font-size: 18px; margin: 0 0 14px; color: var(--green); display: flex; align-items: center; gap: 8px; }
+h3 { font-size: 17px; margin: 0 0 4px; }
 p { margin: 4px 0; }
 
-.habit-item {
-  display: block;
-  padding: 4px 0;
-  cursor: pointer;
+.date { color: var(--muted); font-size: 15px; }
+
+/* Panels */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
 }
 
-.dhikr-card {
-  border: 1px solid #ccc;
-  padding: 12px;
-  margin-bottom: 12px;
+/* Summary */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.arabic { font-size: 24px; }
+.stat { display: flex; flex-direction: column; }
+.stat-value { font-size: 24px; font-weight: 700; color: var(--green); line-height: 1.2; }
+.stat-label { font-size: 13px; color: var(--muted); }
 
+.message { color: var(--muted); font-size: 14px; margin-top: 10px; }
+
+.badge {
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--green-soft);
+  color: var(--green);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+/* Progress bars */
 .progress-track,
 .counter-track {
   height: 10px;
-  background: #e5e5e5;
-  margin: 8px 0;
+  background: var(--track);
+  border-radius: 999px;
+  overflow: hidden;
 }
 
 .progress-fill,
 .counter-fill {
   height: 100%;
   width: 0;
-  background: #333;
+  background: var(--green);
+  border-radius: 999px;
+  transition: width 0.25s ease;
 }
 
-button {
-  font: inherit;
-  padding: 6px 12px;
-  border: 1px solid #333;
-  background: #fff;
+.counter-fill { background: var(--gold); }
+
+/* Checklist */
+.habit-list { display: grid; gap: 8px; }
+
+.habit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   cursor: pointer;
 }
 
-button:hover { background: #eee; }
+.habit-item:hover { background: var(--green-soft); }
 
-.note { font-size: 13px; color: #666; }
+.habit-item input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--green);
+  flex-shrink: 0;
+  cursor: pointer;
+}
 
+.habit-item:has(input:checked) {
+  background: var(--green-soft);
+  border-color: var(--green);
+}
+
+/* Dzikir */
+.dhikr-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.dhikr-card:last-child { margin-bottom: 0; }
+
+.arabic {
+  font-family: "Amiri", "Traditional Arabic", serif;
+  font-size: 36px;
+  line-height: 1.6;
+  margin: 6px 0;
+}
+
+.meaning { color: var(--muted); }
+.count-line { margin: 12px 0 8px; font-weight: 600; }
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* Buttons */
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid var(--green);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--green);
+  cursor: pointer;
+  min-width: 88px;
+}
+
+button:hover { background: var(--green-soft); }
+
+button:focus-visible,
+.habit-item input:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.add-dhikr {
+  background: var(--green);
+  color: #fff;
+  min-width: 120px;
+}
+
+.add-dhikr:hover { background: #0d3d20; }
+
+/* Reset */
+.reset-panel { text-align: center; }
+.note { font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+/* Footer identitas */
+.author {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+  padding-top: 20px;
+  margin-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.author-name { font-weight: 700; color: var(--ink); }
+
+/* Toast */
 .toast {
   position: fixed;
   left: 50%;
   bottom: 16px;
   transform: translateX(-50%);
-  background: #222;
+  background: var(--ink);
   color: #fff;
-  padding: 8px 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
   font-size: 14px;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.2s ease;
+  max-width: calc(100% - 32px);
 }
 
 .toast.show { opacity: 1; }
+
+@media (max-width: 480px) {
+  h1 { font-size: 24px; }
+  .stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .stat-value { font-size: 20px; }
+  .panel { padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill, .counter-fill, .toast { transition: none; }
+}

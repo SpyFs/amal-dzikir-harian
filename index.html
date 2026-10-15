@@ -4,78 +4,106 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amal dan Dzikir Harian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <main class="app">
-    <h1>Amal dan Dzikir Harian</h1>
-    <p id="todayDate">Hari ini</p>
+    <header class="page-header">
+      <h1>Amal dan Dzikir Harian</h1>
+      <p id="todayDate" class="date">Hari ini</p>
+    </header>
 
-    <section>
+    <section class="panel summary">
       <h2>Ringkasan</h2>
-      <p>Amal dilakukan: <span id="completedCount">0</span> / <span id="totalCount">8</span></p>
-      <p>Total dzikir: <span id="totalDhikr">0</span> kali</p>
-      <p>Progress: <span id="progressPercent">0%</span></p>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-value"><span id="completedCount">0</span> / <span id="totalCount">8</span></span>
+          <span class="stat-label">Amal dilakukan</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value"><span id="totalDhikr">0</span></span>
+          <span class="stat-label">Total dzikir (kali)</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="progressPercent">0%</span>
+          <span class="stat-label">Progress</span>
+        </div>
+      </div>
       <div class="progress-track" id="progressTrack" role="progressbar"
         aria-label="Progress amal harian" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <div class="progress-fill" id="progressFill"></div>
       </div>
-      <p id="progressMessage"></p>
+      <p id="progressMessage" class="message"></p>
     </section>
 
-    <section>
-      <h2>Amal Hari Ini <span id="checklistBadge">0/8</span></h2>
-      <div id="habitList">
-        <label class="habit-item"><input type="checkbox" data-habit="0"> Melaksanakan salat</label>
-        <label class="habit-item"><input type="checkbox" data-habit="1"> Membaca Al-Qur'an</label>
-        <label class="habit-item"><input type="checkbox" data-habit="2"> Membantu orang lain</label>
-        <label class="habit-item"><input type="checkbox" data-habit="3"> Berkata baik</label>
-        <label class="habit-item"><input type="checkbox" data-habit="4"> Menjaga kebersihan</label>
-        <label class="habit-item"><input type="checkbox" data-habit="5"> Berdoa dan bersyukur</label>
-        <label class="habit-item"><input type="checkbox" data-habit="6"> Berbagi atau bersedekah</label>
-        <label class="habit-item"><input type="checkbox" data-habit="7"> Belajar hal bermanfaat</label>
+    <section class="panel">
+      <h2>Amal Hari Ini <span id="checklistBadge" class="badge">0/8</span></h2>
+      <div id="habitList" class="habit-list">
+        <label class="habit-item"><input type="checkbox" data-habit="0"> <span>Melaksanakan salat</span></label>
+        <label class="habit-item"><input type="checkbox" data-habit="1"> <span>Membaca Al-Qur'an</span></label>
+        <label class="habit-item"><input type="checkbox" data-habit="2"> <span>Membantu orang lain</span></label>
+        <label class="habit-item"><input type="checkbox" data-habit="3"> <span>Berkata baik</span></label>
+        <label class="habit-item"><input type="checkbox" data-habit="4"> <span>Menjaga kebersihan</span></label>
+        <label class="habit-item"><input type="checkbox" data-habit="5"> <span>Berdoa dan bersyukur</span></label>
+        <label class="habit-item"><input type="checkbox" data-habit="6"> <span>Berbagi atau bersedekah</span></label>
+        <label class="habit-item"><input type="checkbox" data-habit="7"> <span>Belajar hal bermanfaat</span></label>
       </div>
     </section>
 
-    <section>
+    <section class="panel">
       <h2>Dzikir Harian</h2>
 
       <div class="dhikr-card">
         <h3>Subhanallah</h3>
         <p lang="ar" dir="rtl" class="arabic">سُبْحَانَ اللَّهِ</p>
-        <p>Maha Suci Allah</p>
-        <p>Hitungan: <span id="count0">0</span> / 33</p>
+        <p class="meaning">Maha Suci Allah</p>
+        <p class="count-line">Hitungan: <span id="count0">0</span> / 33</p>
         <div class="counter-track"><div class="counter-fill" id="fill0"></div></div>
-        <button class="add-dhikr" data-add="0" type="button">+1</button>
-        <button class="reset-dhikr" data-reset="0" type="button">Reset</button>
+        <div class="actions">
+          <button class="add-dhikr" data-add="0" type="button">+1</button>
+          <button class="reset-dhikr" data-reset="0" type="button">Reset</button>
+        </div>
       </div>
 
       <div class="dhikr-card">
         <h3>Alhamdulillah</h3>
         <p lang="ar" dir="rtl" class="arabic">الْحَمْدُ لِلَّهِ</p>
-        <p>Segala puji bagi Allah</p>
-        <p>Hitungan: <span id="count1">0</span> / 33</p>
+        <p class="meaning">Segala puji bagi Allah</p>
+        <p class="count-line">Hitungan: <span id="count1">0</span> / 33</p>
         <div class="counter-track"><div class="counter-fill" id="fill1"></div></div>
-        <button class="add-dhikr" data-add="1" type="button">+1</button>
-        <button class="reset-dhikr" data-reset="1" type="button">Reset</button>
+        <div class="actions">
+          <button class="add-dhikr" data-add="1" type="button">+1</button>
+          <button class="reset-dhikr" data-reset="1" type="button">Reset</button>
+        </div>
       </div>
 
       <div class="dhikr-card">
         <h3>Allahu Akbar</h3>
         <p lang="ar" dir="rtl" class="arabic">اللَّهُ أَكْبَرُ</p>
-        <p>Allah Maha Besar</p>
-        <p>Hitungan: <span id="count2">0</span> / 33</p>
+        <p class="meaning">Allah Maha Besar</p>
+        <p class="count-line">Hitungan: <span id="count2">0</span> / 33</p>
         <div class="counter-track"><div class="counter-fill" id="fill2"></div></div>
-        <button class="add-dhikr" data-add="2" type="button">+1</button>
-        <button class="reset-dhikr" data-reset="2" type="button">Reset</button>
+        <div class="actions">
+          <button class="add-dhikr" data-add="2" type="button">+1</button>
+          <button class="reset-dhikr" data-reset="2" type="button">Reset</button>
+        </div>
       </div>
     </section>
 
-    <section>
+    <section class="panel reset-panel">
       <button id="resetDay" type="button">Reset hari ini</button>
       <p class="note">Data disimpan di browser perangkat ini.</p>
     </section>
+
+    <footer class="author">
+      <p class="author-name">Muhammad Fikri Rabbani</p>
+      <p>NIM: 2606849</p>
+      <p>Sosial Project PAI</p>
+    </footer>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
